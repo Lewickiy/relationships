@@ -26,24 +26,39 @@ public class Citizen {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "passport_id", referencedColumnName = "passport_id")
     private Passport passport; //Not created yet
-
-    //TODO
-    @ManyToMany
-    private List<House> houses; //many-to-many
-
-    //TODO
-    @OneToMany
-    private List<Car> cars; //one to many
-
     /*
-    On the other side
+    TODO On the other side
     @OneToOne(mappedBy = "citizen")
     private Citizen citizen;
-    */
+
+     */
+
+    @ManyToMany
+    @JoinTable(
+            name = "citizen_house",
+            joinColumns = @JoinColumn(name = "citizen_id"),
+            inverseJoinColumns = @JoinColumn(name = "house_id")
+    )
+    private List<House> houses; //many-to-many
+
+    /*
+    @ManyToMany(mappedBy = "houses")
+    Set<Citizen> citizenHouses;
+     */
+
+    @OneToMany(mappedBy = "citizen")
+    private Set<Car> cars; //one to many
+
+    /*
+    TODO On the other side
+    @ManyToOne
+    @JoinColumn(name="citizen_id", nullable=false)
+    private Citizen citizen;
+     */
 
     @CreationTimestamp
     @Column(name = "created_date")
-    private Date currentDate;
+    private Date createDate;
     
     @UpdateTimestamp
     @Column(name = "updated_date")
@@ -57,12 +72,8 @@ public class Citizen {
         this.id = id;
     }
 
-    public Date getCurrentDate() {
-        return currentDate;
-    }
-
-    public void setCurrentDate(Date currentDate) {
-        this.currentDate = currentDate;
+    public Date getCreateDate() {
+        return createDate;
     }
 
     public Date getUpdateDate() {
