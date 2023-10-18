@@ -1,12 +1,21 @@
 package org.lewickiy.relationships.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 
-@Entity
+@Entity //is it "Entity design pattern"?
+@Getter //Почему не работают getters and setters из lombok?
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Table(name = "citizen")
 public class Citizen {
     @Id
@@ -20,12 +29,20 @@ public class Citizen {
             sequenceName = "citizen_sequence_id",
             allocationSize = 1
     )
-    private Integer id;
+    private Long id;
+
+    @Column(name = "name", nullable = false)
+    private String name;
+    @Column(name = "birthday")
+    private LocalDate birthday;
+
+    @Transient
+    private Integer age;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    /*@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "passport_id", referencedColumnName = "passport_id")
-    private Passport passport; //Not created yet
+    private Passport passport; //Not created yet*/
     /*
     TODO On the other side
     @OneToOne(mappedBy = "citizen")
@@ -33,22 +50,22 @@ public class Citizen {
 
      */
 
-    @ManyToMany
+    /*@ManyToMany
     @JoinTable(
             name = "citizen_house",
             joinColumns = @JoinColumn(name = "citizen_id"),
             inverseJoinColumns = @JoinColumn(name = "house_id")
     )
-    private List<House> houses; //many-to-many
+    private List<House> houses; //many-to-many*/
 
     /*
     @ManyToMany(mappedBy = "houses")
     Set<Citizen> citizenHouses;
      */
 
-    @OneToMany(mappedBy = "citizen")
+    /*@OneToMany(mappedBy = "citizen")
     private Set<Car> cars; //one to many
-
+*/
     /*
     TODO On the other side
     @ManyToOne
@@ -64,23 +81,15 @@ public class Citizen {
     @Column(name = "updated_date")
     private Date updateDate;
 
-    public Integer getId() {
-        return id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public Integer getAge() {
+        return Period.between(this.birthday, LocalDate.now()).getYears();
     }
 }
