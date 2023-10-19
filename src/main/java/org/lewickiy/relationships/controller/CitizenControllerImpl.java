@@ -1,5 +1,6 @@
 package org.lewickiy.relationships.controller;
 
+import org.lewickiy.relationships.controller.impl.CitizenController;
 import org.lewickiy.relationships.model.Citizen;
 import org.lewickiy.relationships.service.impl.CitizenServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,22 +10,22 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/citizen")
-public class CitizenController {
+public class CitizenControllerImpl implements CitizenController {
 
     private final CitizenServiceImpl citizenService;
 
     @Autowired
-    public CitizenController(CitizenServiceImpl citizenService) {
+    public CitizenControllerImpl(CitizenServiceImpl citizenService) {
         this.citizenService = citizenService;
     }
 
-    @GetMapping
+    @Override
     public List<Citizen> getCitizens() {
         return citizenService.getAllCitizens();
     }
 
-    @PostMapping
-    public void addNewCitizen(@RequestBody Citizen citizen) {
+    @Override
+    public void addNewCitizen(Citizen citizen) {
         citizenService.addNewCitizen(citizen);
     }
 }
