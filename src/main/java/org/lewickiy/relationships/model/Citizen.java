@@ -37,6 +37,7 @@ public class Citizen {
     private LocalDate birthday;
 
     @Transient
+    @Getter(AccessLevel.NONE)
     private Integer age;
 
 
@@ -44,6 +45,7 @@ public class Citizen {
     @JoinColumn(name = "passport_id", referencedColumnName = "passport_id")
     private Passport passport; //Not created yet*/
     /*
+
     TODO On the other side
     @OneToOne(mappedBy = "citizen")
     private Citizen citizen;
@@ -80,14 +82,6 @@ public class Citizen {
     @UpdateTimestamp
     @Column(name = "updated_date")
     private Date updateDate;
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
 
     public Integer getAge() {
         return Period.between(this.birthday, LocalDate.now()).getYears();
