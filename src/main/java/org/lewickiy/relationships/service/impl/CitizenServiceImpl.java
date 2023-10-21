@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CitizenServiceImpl implements CitizenService {
-
     private final CitizenRepository citizenRepository;
 
     @Autowired
@@ -24,7 +24,17 @@ public class CitizenServiceImpl implements CitizenService {
     }
 
     @Override
+    public Optional<Citizen> findCitizenById(Long id) {
+        return citizenRepository.findById(id);
+    }
+
+    @Override
     public void addNewCitizen(Citizen citizen) {
-        System.out.println(citizen);
+        citizenRepository.save(citizen);
+    }
+
+    @Override
+    public void deleteCitizenById(Long id) {
+        citizenRepository.deleteById(id);
     }
 }

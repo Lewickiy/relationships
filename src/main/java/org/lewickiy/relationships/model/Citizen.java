@@ -8,9 +8,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Date;
+import java.util.List;
 
-@Entity //is it "Entity design pattern"?
-@Getter //Почему не работают getters and setters из lombok?
+@Entity
+@Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,8 +32,12 @@ public class Citizen {
     )
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "firstname", nullable = false, columnDefinition = "VARCHAR (55)")
+    private String firstname;
+
+    @Column(name = "last_name", nullable = false, columnDefinition = "VARCHAR (55)")
+    private String lastName;
+
     @Column(name = "birthday")
     private LocalDate birthday;
 
@@ -41,29 +46,17 @@ public class Citizen {
     private Integer age;
 
 
-    /*@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "passport_id", referencedColumnName = "passport_id")
-    private Passport passport; //Not created yet*/
-    /*
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "passport_id", referencedColumnName = "passport_id", nullable = false)
+    private Passport passport;
 
-    TODO On the other side
-    @OneToOne(mappedBy = "citizen")
-    private Citizen citizen;
-
-     */
-
-    /*@ManyToMany
+    @ManyToMany
     @JoinTable(
             name = "citizen_house",
             joinColumns = @JoinColumn(name = "citizen_id"),
             inverseJoinColumns = @JoinColumn(name = "house_id")
     )
-    private List<House> houses; //many-to-many*/
-
-    /*
-    @ManyToMany(mappedBy = "houses")
-    Set<Citizen> citizenHouses;
-     */
+    private List<House> houses; //many-to-many
 
     /*@OneToMany(mappedBy = "citizen")
     private Set<Car> cars; //one to many
