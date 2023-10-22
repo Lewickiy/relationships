@@ -9,15 +9,14 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
-@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@ToString
-@Table(name = "citizen")
+@Table(name = "citizens")
+@Entity
 public class Citizen {
     @Id
     @Column(name = "citizen_id")
@@ -35,10 +34,10 @@ public class Citizen {
     @Column(name = "firstname", nullable = false, columnDefinition = "VARCHAR (55)")
     private String firstname;
 
-    @Column(name = "last_name", nullable = false, columnDefinition = "VARCHAR (55)")
+    @Column(name = "last_name", columnDefinition = "VARCHAR (55)")
     private String lastName;
 
-    @Column(name = "birthday")
+    @Column(name = "birthday", columnDefinition = "DATE")
     private LocalDate birthday;
 
     @Transient
@@ -56,17 +55,11 @@ public class Citizen {
             joinColumns = @JoinColumn(name = "citizen_id"),
             inverseJoinColumns = @JoinColumn(name = "house_id")
     )
-    private List<House> houses; //many-to-many
+    private List<House> houses;
 
-    /*@OneToMany(mappedBy = "citizen")
-    private Set<Car> cars; //one to many
-*/
-    /*
-    TODO On the other side
-    @ManyToOne
-    @JoinColumn(name="citizen_id", nullable=false)
-    private Citizen citizen;
-     */
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "citizen_id", referencedColumnName = "citizen_id")
+    private Set<Car> cars;
 
     @CreationTimestamp
     @Column(name = "created_date")

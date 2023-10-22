@@ -5,14 +5,12 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Table(name = "passport")
+@Entity
 public class Passport {
     @Id
     @Column(

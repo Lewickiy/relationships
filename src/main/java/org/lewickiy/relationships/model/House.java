@@ -6,14 +6,12 @@ import lombok.*;
 
 import java.util.Set;
 
-@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Table(name = "houses")
+@Entity
 public class House {
     @Id
     @Column(name = "house_id")
