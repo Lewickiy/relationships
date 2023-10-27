@@ -3,8 +3,6 @@ package org.lewickiy.relationships.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -29,19 +27,4 @@ public class Passport {
     )
     @Setter(AccessLevel.NONE)
     private Long id;
-
-    @Column(name = "date_of_issue", updatable = false, nullable = false)
-    private LocalDate dateOfIssue;
-
-    @Column(name = "validity")
-    private Integer validity;
-
-    @Transient
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
-    private LocalDate expirationDate;
-
-    public LocalDate getExpirationDate() {
-        return this.dateOfIssue.plusYears(validity);
-    }
 }

@@ -33,8 +33,8 @@ public class Car{
     @Column(name = "model")
     private String model;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "citizen_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "citizen_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Citizen citizen;

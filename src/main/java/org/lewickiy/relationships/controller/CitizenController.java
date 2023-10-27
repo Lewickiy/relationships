@@ -11,17 +11,11 @@ import java.util.Optional;
 public interface CitizenController {
     @GetMapping
     List<Citizen> getAllCitizens();
-
     @GetMapping(value = "/{id}")
     Optional<Citizen> findCitizenById(
             @PathVariable(value = "id") Long id);
-
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     void addNewCitizen(@RequestBody Citizen citizen);
-
-    @PutMapping({"/{citizen_id}&{passport_id}"}) //здесь что-то не так, но это работает
-    void linkPassportByIdToCitizen(@PathVariable(value = "citizen_id") Long citizenId, @PathVariable(value = "passport_id") Long passportId);
-
     @DeleteMapping({"/{id}"})
     void deleteCitizenById(@PathVariable(value = "id") Long id);
 }

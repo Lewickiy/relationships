@@ -1,8 +1,9 @@
 package org.lewickiy.relationships.controller;
 
 import org.lewickiy.relationships.model.Passport;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,11 +12,5 @@ import java.util.Optional;
 public interface PassportController {
     @GetMapping
     List<Passport> getAllPassports();
-
-    Optional<Passport> findPassportById(
-            @PathVariable(value = "id") Long id);
-
-    void addNewPassport(@RequestBody Passport passport);
-
-    void deletePassportById(@PathVariable(value = "id") Long id);
+    Optional<Passport> findPassportById(@PathVariable(value = "id") Long id);
 }

@@ -1,5 +1,6 @@
 package org.lewickiy.relationships.controller.impl;
 
+import lombok.AllArgsConstructor;
 import org.lewickiy.relationships.controller.HouseController;
 import org.lewickiy.relationships.model.House;
 import org.lewickiy.relationships.service.HouseService;
@@ -9,12 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@AllArgsConstructor
 public class HouseControllerImpl implements HouseController {
     private final HouseService houseService;
-
-    public HouseControllerImpl(HouseService houseService) {
-        this.houseService = houseService;
-    }
 
     @Override
     public List<House> getAllHouses() {

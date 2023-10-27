@@ -1,5 +1,6 @@
 package org.lewickiy.relationships.controller.impl;
 
+import lombok.AllArgsConstructor;
 import org.lewickiy.relationships.controller.PassportController;
 import org.lewickiy.relationships.model.Passport;
 import org.lewickiy.relationships.service.impl.PassportServiceImpl;
@@ -9,12 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@AllArgsConstructor
 public class PassportControllerImpl implements PassportController {
     private final PassportServiceImpl passportService;
-
-    public PassportControllerImpl(PassportServiceImpl passportService) {
-        this.passportService = passportService;
-    }
 
     @Override
     public List<Passport> getAllPassports() {
@@ -24,15 +22,5 @@ public class PassportControllerImpl implements PassportController {
     @Override
     public Optional<Passport> findPassportById(Long id) {
         return passportService.findPassportById(id);
-    }
-
-    @Override
-    public void addNewPassport(Passport passport) {
-        passportService.addNewPassport(passport);
-    }
-
-    @Override
-    public void deletePassportById(Long id) {
-        passportService.deletePassportById(id);
     }
 }
