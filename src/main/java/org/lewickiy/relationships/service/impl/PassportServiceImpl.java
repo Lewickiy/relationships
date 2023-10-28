@@ -23,6 +23,7 @@ public class PassportServiceImpl implements PassportService {
         return passportRepository.findAll();
     }
 
+
     @Override
     public Optional<Passport> findPassportById(Long id) {
         return passportRepository.findById(id);

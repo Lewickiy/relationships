@@ -1,22 +1,18 @@
 package org.lewickiy.relationships.controller.impl;
 
+import lombok.AllArgsConstructor;
 import org.lewickiy.relationships.controller.CarController;
 import org.lewickiy.relationships.model.Car;
 import org.lewickiy.relationships.service.CarService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@AllArgsConstructor
 public class CarControllerImpl implements CarController {
     private final CarService carService;
-
-    @Autowired
-    public CarControllerImpl(CarService carService) {
-        this.carService = carService;
-    }
 
     @Override
     public List<Car> getAllCars() {
