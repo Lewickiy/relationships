@@ -12,5 +12,6 @@ import java.util.Optional;
 public interface PassportController {
     @GetMapping
     List<Passport> getAllPassports();
+
     Optional<Passport> findPassportById(@PathVariable(value = "id") Long id);
 }
