@@ -1,22 +1,18 @@
 package org.lewickiy.relationships.service.impl;
 
+import lombok.AllArgsConstructor;
 import org.lewickiy.relationships.model.Passport;
 import org.lewickiy.relationships.repository.PassportRepository;
 import org.lewickiy.relationships.service.PassportService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class PassportServiceImpl implements PassportService {
     private final PassportRepository passportRepository;
-
-    @Autowired
-    public PassportServiceImpl(PassportRepository passportRepository) {
-        this.passportRepository = passportRepository;
-    }
 
     @Override
     public List<Passport> getAllPassports() {
