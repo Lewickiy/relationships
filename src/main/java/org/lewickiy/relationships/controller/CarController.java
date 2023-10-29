@@ -1,13 +1,15 @@
 package org.lewickiy.relationships.controller;
 
+import org.lewickiy.relationships.dto.CarDto;
 import org.lewickiy.relationships.model.Car;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +17,8 @@ import java.util.Optional;
 @RequestMapping(path = "api/v1/car")
 public interface CarController {
     @GetMapping
-    List<Car> getAllCars();
+    @ResponseBody
+    List<CarDto> getAllCars();
 
     @GetMapping(value = "/{id}")
     Optional<Car> findCarById(
