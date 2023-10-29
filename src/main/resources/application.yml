@@ -1,0 +1,14 @@
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: hagakure7016
+        url: jdbc:mysql://server4.hosting.reg.ru:3306/u0860263_relationships
+        username: u0860263_lewicki
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL8Dialect
+                format-sql: true
+        show-sql: true
