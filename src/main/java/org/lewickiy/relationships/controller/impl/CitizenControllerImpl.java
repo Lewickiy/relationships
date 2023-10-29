@@ -3,7 +3,6 @@ package org.lewickiy.relationships.controller.impl;
 import lombok.AllArgsConstructor;
 import org.lewickiy.relationships.controller.CitizenController;
 import org.lewickiy.relationships.model.Citizen;
-import org.lewickiy.relationships.model.Passport;
 import org.lewickiy.relationships.service.impl.CitizenServiceImpl;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,8 +27,6 @@ public class CitizenControllerImpl implements CitizenController {
 
     @Override
     public void addNewCitizen(Citizen citizen) {
-        Passport passport = new Passport();
-        citizen.setPassport(passport);
         citizenService.addNewCitizen(citizen);
     }
 
