@@ -11,14 +11,11 @@ import java.util.Optional;
 public interface CarController {
     @GetMapping
     List<Car> getAllCars();
-
     @GetMapping(value = "/{id}")
     Optional<Car> findCarById(
             @PathVariable(value = "id") Long id);
-
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     void addNewCar(@RequestBody Car car);
-
     @DeleteMapping({"/{id}"})
     void deleteCarById(@PathVariable(value = "id") Long id);
 }
